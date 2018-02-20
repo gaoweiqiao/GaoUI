@@ -2,8 +2,31 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
     <title>gaoui</title>
+    <style>
+      html,body{
+        margin: 0;
+        padding: 0;
+        width:100%;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: scroll;
+      }
+    </style>
+    <script>
+      (function(){
+          if(window.devicePixelRatio){
+            var metaEl = document.createElement('meta');
+            metaEl.setAttribute('name', 'viewport');
+            var scale = 1 / window.devicePixelRatio;
+            metaEl.setAttribute('content',"initial-scale="+scale+", maximum-scale="+scale+", minimum-scale="+scale+", user-scalable=no");
+            document.documentElement.firstElementChild.appendChild(metaEl);
+          }
+          document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.2 + 'px';
+      }());
+
+    </script>
   </head>
   <body>
     <div id="app"></div>
