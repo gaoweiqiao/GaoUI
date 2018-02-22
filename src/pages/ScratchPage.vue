@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 100%;height: 1.5rem;">
+  <div style="width: 100%;height: 7.2rem;">
     <scratch>
       <div>This is scratch</div>
     </scratch>

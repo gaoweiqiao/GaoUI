@@ -30,30 +30,36 @@
               ctx.fillRect(0,0,canvas.width,canvas.height);
             },
             erase(x,y){
-
-              let ctx = this.getPaint();
+              let canvas = this.$el.lastElementChild;
+              let ctx = canvas.getContext('2d');
               ctx.globalCompositeOperation = 'destination-out';
-//              ctx.fillStyle="#ffff00";
-              console.log(`(${x},${y})`);
+              ctx.fillStyle="#ffffff";
+//              console.log(`(${x},${y})`);
               ctx.moveTo(x,y);
+//              ctx.beginPath();
               ctx.arc(x, y, 100, 0, Math.PI * 2, true);
+//              ctx.fillRect(x,y,100,100);
               ctx.fill();
 
             },
             computeXY(touch){
               var touchX = touch.clientX;
               var touchY = touch.clientY;
+//              alert(`(${touchX},${touchY})`);
               let rect = this.$el.getBoundingClientRect();
-              return [touchX - rect.x,touchY - rect.y];
+//              alert(`(${rect.left},${rect.top})`);
+              return [touchX - rect.left,touchY - rect.top];
             },
             onTouchStart(event){
               let touch = event.changedTouches[0];
-              this.erase(...this.computeXY(touch));
+              let xy = this.computeXY(touch);
+              this.erase(xy[0],xy[1]);
 //              this.erase(10,10);
             },
             onTouchMove(event){
               let touch = event.changedTouches[0];
-              this.erase(...this.computeXY(touch));
+              let xy = this.computeXY(touch);
+              this.erase(xy[0],xy[1]);
             },
             onTouchEnd(event){
               let percent = this.computeTransparentPercent();
@@ -82,7 +88,7 @@
           canvas.width = this.$el.clientWidth;
           canvas.height = this.$el.clientHeight;
           let ctx = canvas.getContext('2d');
-          ctx.fillStyle= '#d3d3d3';
+          ctx.fillStyle= '#ff004e';
           ctx.fillRect(0,0,canvas.width,canvas.height);
         }
     };

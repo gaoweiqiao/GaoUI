@@ -125,6 +125,7 @@
             }else if(width < 100){
               width = 100;
             }
+
             innerRect.width = width;
             innerRect.height = innerRect.width;
             this.calculateXY(0,0);
@@ -163,16 +164,18 @@
                 this.lastY = touch.clientY;
 
               } else if (e.targetTouches.length === 2) {
+
                 var touch1 = e.targetTouches[0];
                 var touch2 = e.targetTouches[1];
                 var distance = Math.sqrt(Math.pow(touch1.clientX - touch2.clientX, 2) + Math.pow(touch1.clientY - touch2.clientY, 2));
 
                 var ratio = distance / this.lastDistance;
-                calculateScale(ratio);
+
+                this.calculateScale(ratio);
 
                 this.lastDistance = distance;
                 const logText = "log2 : " + "touch1 :(" + touch1.clientX + "," + touch1.clientY + ") and touch2 :(" + touch2.clientX + "," + touch2.clientY + "); width is " + innerRect.width;
-                console.log(logText)
+                console.log(logText);
               }
             }
           },
@@ -208,8 +211,7 @@
     box-sizing: border-box;
     overflow: hidden;
     /*border:2px solid #ff004e;*/
-    border:1px solid #ffffff;
-    box-sizing: border-box;
+    border:4px solid #ffffff;
   }
   .img-container{
     width: 100%;

@@ -1,7 +1,10 @@
 <template>
   <div style="position: relative;width: 100%;height: 100%;top: 0;left: 0;">
     <div class="item" :style="itemStyle(0)" style="transform: translateX(-100%);" ></div>
-    <div class="item" :style="itemStyle(1)" @touchstart="touchStart($event)" @touchmove="touchMove($event)" @touchend="touchEnd($event)"></div>
+    <div class="item" :style="itemStyle(1)"
+         @touchstart.prevent="touchStart($event)"
+         @touchmove.prevent="touchMove($event)"
+         @touchend.prevent="touchEnd($event)"></div>
     <div class="item" :style="itemStyle(2)" style="transform: translateX(100%);" ></div>
   </div>
 </template>
@@ -120,7 +123,7 @@
             clearTimeout(this.timeoutId);
           }
           if(!this.scrolling){
-            document.getElementsByTagName("body")[0].addEventListener('touchstart', this.stopScroll,{passive:false,capture:false});
+
             var touch = event.changedTouches[0];
             this.startTime = event.timeStamp;
             this.startX = touch.clientX;
@@ -146,7 +149,6 @@
           }
         },
         touchEnd:function (event) {
-          document.getElementsByTagName("body")[0].removeEventListener('touchstart', this.stopScroll, false);
           var touch = event.changedTouches[0];
           var endTime = event.timeStamp;
           var endX = touch.clientX;
